@@ -3,30 +3,19 @@ WIP means Work in Progress. Please surround code you are modfiying with the labe
 
 
 -----NOTES FOR PARTNER-----*/
-
-$dark: #111;
-$light: #aaa;
-$background: #43210d;
-
-
-
-//removes any superfluous margins
-*{
+* {
   margin: 0;
 }
-body{
+
+body {
   text-align: center;
   background-image: url("../images/background-wood.jpg");
   background-size: cover;
-  color: $light;
-  background-color: $background;
+  color: #aaa;
+  background-color: #43210d;
 }
 
-
-
-//-----WIP-----
-// Black board where the cards are set up
-main{
+main {
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -36,28 +25,28 @@ main{
   height: 500px;
   margin: auto;
   margin-bottom: 50px;
-  background-color: $dark;
+  background-color: #111;
   overflow: hidden;
 }
-.card{
+
+.card {
   width: 125px;
   height: 175px;
   margin: 0 10px;
   border-radius: 10px;
   background-color: #eee;
 }
-//-----WIP-----
 
-
-
-footer{
+footer {
   margin-bottom: -10px;
   padding: 15px;
-  background-color: $dark;
+  background-color: #111;
   position: sticky;
   top: 0px;
-  ul{
-    display: flex;
-    justify-content: space-around;
-  }
 }
+footer ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+/*# sourceMappingURL=main.css.map */
