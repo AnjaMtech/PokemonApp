@@ -26,7 +26,7 @@ body{
 
 //-----WIP-----
 // Black board where the cards are set up
-main{
+#card-board{
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -35,6 +35,9 @@ main{
   width: 800px;
   height: 500px;
   margin: auto;
+}
+main{
+
   margin-bottom: 50px;
   background-color: $dark;
   overflow: hidden;
@@ -47,6 +50,9 @@ main{
   margin: 0 10px;
   border-radius: 10px;
   background-color: #eee;
+  &:hover{
+    cursor: pointer;
+  }
   h2{
     margin: 0;
     margin-bottom: 10px;

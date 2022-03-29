@@ -1,11 +1,13 @@
 /*-----NOTES FOR PARTNER-----
-WIP means Work in Progress. Please surround code you are modfiying with the label.
+
 
 
 -----NOTES FOR PARTNER-----*/
 let cardSize = 40;
+let screenMode = "start menu";
+
 //-----TEMP-----
-const pokemon = [
+const pokemonTemp = [
   {
     name: "Pikachu",
     url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png"
@@ -38,15 +40,19 @@ const pokemon = [
     name: "Squirtle",
     url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png"
   }
-]
+];
 //-----TEMP-----
+
 
 //-----WIP-----
 window.onload = function(){
-  setBoard(6, 3);
+  $("main").append(`<button type="button" name="button" onclick="setBoard(4,3)">Start Game</button>`);
+  $("main").append(``);
 }
 
 function setBoard(x, y){
+  $("main").attr('id', 'card-board');
+  screenMode = "play";
   let myCards =[];
   for(let i=0; i<x*y/2; i++){
     let currPokemon = Math.floor(Math.random()*pokemon.length);
@@ -61,8 +67,10 @@ function setBoard(x, y){
   for(let i=0; i<x*y; i++){
     $("#card-board").append(
       `<div class="card">
-        <h2>${pokemon[myCards[i]].name}</h2>
-        <img src="${pokemon[myCards[i]].url}" alt="Placeholder" class="img-fluid">
+        <div class="inner-card">
+          <h2>${pokemon[myCards[i]].name}</h2>
+          <!--<img src="${pokemon[myCards[i]].url}" alt="Placeholder" id="card${i}">-->
+        </div>
       </div>`
     );
   }
@@ -74,5 +82,14 @@ function setBoard(x, y){
   // Card ratio * Card Size + Card Margin multiplied by how many cards plus BOARD padding
   $("main").css("width", `${(2.5*cardSize+20)*x+50}px`);
   $("main").css("height", `${(3.5*cardSize+20)*y+50}px`);
+
+  $(".card").click(function(){
+    purr(this);
+  });
+}
+
+
+function flipCard(index){
+  // purr();
 }
 //-----WIP-----
