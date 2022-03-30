@@ -7,6 +7,7 @@ let cardSize = 40;
 let screenMode = "start menu";
 
 //-----TEMP-----
+
 const pokemonTemp = [
   {
     name: "Pikachu",
@@ -46,6 +47,9 @@ const pokemonTemp = [
 
 //-----WIP-----
 window.onload = function(){
+  //temp
+  setBoard(4,3);
+  //temp
   $("main").append(`<button type="button" name="button" onclick="setBoard(4,3)">Start Game</button>`);
   $("main").append(``);
 }
@@ -55,7 +59,7 @@ function setBoard(x, y){
   screenMode = "play";
   let myCards =[];
   for(let i=0; i<x*y/2; i++){
-    let currPokemon = Math.floor(Math.random()*pokemon.length);
+    let currPokemon = Math.floor(Math.random()*pokemonTemp.length);
     for(let j=0; j<2; j++){
       myCards.splice(Math.floor(Math.random()*myCards.length), 0, currPokemon);
     }
@@ -67,9 +71,9 @@ function setBoard(x, y){
   for(let i=0; i<x*y; i++){
     $("#card-board").append(
       `<div class="card">
-        <div class="inner-card">
-          <h2>${pokemon[myCards[i]].name}</h2>
-          <!--<img src="${pokemon[myCards[i]].url}" alt="Placeholder" id="card${i}">-->
+        <div class="inner-card hidden">
+          <h2>${pokemonTemp[myCards[i]].name}</h2>
+          <img src="${pokemonTemp[myCards[i]].url}" alt="Placeholder" id="card${i}">
         </div>
       </div>`
     );
@@ -83,8 +87,8 @@ function setBoard(x, y){
   $("main").css("width", `${(2.5*cardSize+20)*x+50}px`);
   $("main").css("height", `${(3.5*cardSize+20)*y+50}px`);
 
-  $(".card").click(function(){
-    purr(this);
+  $(".card").click(function(e){
+    $(e.target).children(".inner-card").toggleClass("hidden");
   });
 }
 
