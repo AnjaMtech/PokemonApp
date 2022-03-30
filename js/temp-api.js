@@ -32,7 +32,3 @@ const pokemonTemp = [
     url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png"
   }
 ];
-
-window.onload = function(){
-  setBoard(4,3);
-}

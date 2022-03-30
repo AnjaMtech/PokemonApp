@@ -15,7 +15,7 @@ body {
   background-color: #43210d;
 }
 
-#card-board {
+#game-board {
   display: flex;
   justify-content: center;
   align-items: stretch;
