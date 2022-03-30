@@ -70,10 +70,10 @@ function setBoard(x, y){
   //Adds cards to board
   for(let i=0; i<x*y; i++){
     $("#card-board").append(
-      `<div class="card">
-        <div class="inner-card hidden">
-          <h2>${pokemonTemp[myCards[i]].name}</h2>
-          <img src="${pokemonTemp[myCards[i]].url}" alt="Placeholder" id="card${i}">
+      `<div class="card" id="crd${i}">
+        <div class="inner-card hidden" id="inr${i}">
+          <h2 id="tit${i}">${pokemonTemp[myCards[i]].name}</h2>
+          <img src="${pokemonTemp[myCards[i]].url}" alt="${pokemonTemp[myCards[i]].name}" id="img${i}">
         </div>
       </div>`
     );
@@ -88,12 +88,17 @@ function setBoard(x, y){
   $("main").css("height", `${(3.5*cardSize+20)*y+50}px`);
 
   $(".card").click(function(e){
-    $(e.target).children(".inner-card").toggleClass("hidden");
+    let myID = $(e.target).attr("id").charAt(3)+$(e.target).attr("id").charAt(4);
+    flipCard(myID);
+
+
+
   });
 }
 
 
 function flipCard(index){
-  // purr();
+  $(`#inr${index}`).toggleClass("hidden");
 }
+
 //-----WIP-----
