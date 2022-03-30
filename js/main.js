@@ -1,57 +1,9 @@
-/*-----NOTES FOR PARTNER-----
-
-
-
------NOTES FOR PARTNER-----*/
 let cardSize = 40;
 let screenMode = "start menu";
 
-//-----TEMP-----
-
-const pokemonTemp = [
-  {
-    name: "Pikachu",
-    url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png"
-  },
-  {
-    name: "Machamp",
-    url: "https://static.wikia.nocookie.net/pokemon/images/6/60/Team_Rocket_Machamp.png/revision/latest?cb=20200112112729"
-  },
-  {
-    name: "Electrike",
-    url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/309.png"
-  },
-  {
-    name: "Ditto",
-    url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/132.png"
-  },
-  {
-    name: "Dugtrio",
-    url: "https://static.wikia.nocookie.net/pokemon/images/c/c7/Katie_Dugtrio.png/revision/latest?cb=20150819064319"
-  },
-  {
-    name: "Torchic",
-    url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/255.png"
-  },
-  {
-    name: "Rattata",
-    url: "https://spng.pngfind.com/pngs/s/686-6866018_pokemon-rattata-png-transparent-png.png"
-  },
-  {
-    name: "Squirtle",
-    url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png"
-  }
-];
-//-----TEMP-----
-
-
 //-----WIP-----
 window.onload = function(){
-  //temp
-  setBoard(4,3);
-  //temp
   $("main").append(`<button type="button" name="button" onclick="setBoard(4,3)">Start Game</button>`);
-  $("main").append(``);
 }
 
 function setBoard(x, y){
@@ -90,9 +42,6 @@ function setBoard(x, y){
   $(".card").click(function(e){
     let myID = $(e.target).attr("id").charAt(3)+$(e.target).attr("id").charAt(4);
     flipCard(myID);
-
-
-
   });
 }
 
