@@ -15,7 +15,7 @@ body {
   background-color: #43210d;
 }
 
-main {
+#game-board {
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -24,6 +24,9 @@ main {
   width: 800px;
   height: 500px;
   margin: auto;
+}
+
+main {
   margin-bottom: 50px;
   background-color: #111;
   overflow: hidden;
@@ -32,9 +35,28 @@ main {
 .card {
   width: 125px;
   height: 175px;
+  text-align: center;
+  padding: 10px;
   margin: 0 10px;
   border-radius: 10px;
   background-color: #eee;
+  user-select: none;
+}
+.card:hover {
+  cursor: pointer;
+}
+.card h2 {
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 10px;
+}
+.card img {
+  width: 80%;
+  height: 80%;
+}
+
+.hidden {
+  display: none;
 }
 
 footer {

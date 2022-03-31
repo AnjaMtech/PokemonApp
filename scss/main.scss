@@ -22,26 +22,46 @@ body {
 
 //-----WIP-----
 // Black board where the cards are set up
-main {
-	display: flex;
-	justify-content: center;
-	align-items: stretch;
-	flex-wrap: wrap;
-	gap: 0;
-	width: 800px;
-	height: 500px;
-	margin: auto;
-	margin-bottom: 50px;
-	background-color: $dark;
-	overflow: hidden;
+#game-board{
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 0;
+  width: 800px;
+  height: 500px;
+  margin: auto;
 }
+main{
 
-.card {
-	width: 125px;
-	height: 175px;
-	margin: 0 10px;
-	border-radius: 10px;
-	background-color: #eee;
+  margin-bottom: 50px;
+  background-color: $dark;
+  overflow: hidden;
+}
+.card{
+  width: 125px;
+  height: 175px;
+  text-align: center;
+  padding: 10px;
+  margin: 0 10px;
+  border-radius: 10px;
+  background-color: #eee;
+  user-select: none;
+  &:hover{
+    cursor: pointer;
+  }
+  h2{
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 10px;
+  }
+  img{
+    width: 80%;
+    height: 80%;
+  }
+}
+.hidden{
+  display: none;
 }
 //-----WIP-----
 
