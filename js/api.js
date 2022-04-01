@@ -1,11 +1,11 @@
 //TODO make start page
-
-const apiCards = "https://api.pokemontcg.io/v2/cards/data/<id>";
+const apiCards = "https://api.pokemontcg.io/v2/cards?page=1&pageSize=16";
 const apiSets = "https://api.pokemontcg.io/v2/sets";
 const apiKey = "ef72570ff371408f9668e414353b7b2e";
 
-//This function grabs the cards
+//This function grabs the cards. it is also currently set to only grab 16 cards
 function getCards() {
+	let cards;
 	return fetch(apiCards, {
 		method: "GET",
 		headers: {
@@ -13,18 +13,17 @@ function getCards() {
 		},
 	})
 		.then((response) => {
-			response.json();
+			return response.json();
 		})
 		.then((pokemon) => {
-			pokemon.card.find("base1-4");
-		})
-		.then((card) => {
-			console.log(card.name); // "Charizard"
-			return card.name;
+			cards = pokemon;
+			console.log(cards);
 		});
 }
 
-let sets;
+//this function grabs the sets.....well it's supposed to
+
+let cardSets = [];
 
 function getSets() {
 	return fetch(apiSets, {
@@ -34,10 +33,10 @@ function getSets() {
 		},
 	})
 		.then((res) => {
-			res.json();
+			return res.json();
 		})
 		.then((setInfo) => {
-			sets = setInfo;
+			cardSets = setInfo;
 			console.log(setInfo);
 		})
 		.then(() => {
@@ -45,35 +44,13 @@ function getSets() {
 		});
 }
 
-function selectSet() {} //TODO finish this function
+getSets();
 
-//ANCHOR Ignore anything below this comment. Using it as reference code
-
-let myCourses = "";
-
-function getAvailableCourses() {
-	fetch("https://golf-courses-api.herokuapp.com/courses")
-		.then((response) => {
-			//passes api into this function
-			return response.json(); //returns the api information to .JSON
-		})
-		.then((info) => {
-			//takes the .JSON and grabs the data from the .JSON
-			myCourses = info; // Assigns the .JSON data to variable myCourses
-			console.log(info);
-		})
-		.then(() => {
-			selectCourse(); // calls the select course function
-		});
-}
-
-function selectCourse() {
-	let courseOptionsHtml = "";
-	myCourses.courses.forEach((course) => {
-		courseOptionsHtml += `<option value="${course.id}">${course.name}</option>`;
-		courseImages += `<h4>${course.name}</h4><img id= 'course-image' src= '${course.image}'>`;
+function selectSet() {
+	let testSelectHTML = "";
+	cardSets.forEach((x) => {
+		testSelectHTML += `<option value="${x.id}">${x.name}</option>`;
 	});
-	// document.addEventListener("click", getCourseImage);
-	document.getElementById("course-select").innerHTML = courseOptionsHtml;
-	document.getElementById("course-image").innerHTML = courseImages; //make the image only populate with an onClick("")
+
+	document.querySelector("testSelect").innerHTML = testSelectHtml;
 }
