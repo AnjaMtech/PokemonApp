@@ -1,10 +1,19 @@
 let screenMode;
-
-function startMenu(){
-  $("main").append(`<button type="button" name="button" onclick="setBoard(4,3)">Start Game</button>`);
-  screenMode = "start menu"
+let score;
+let currentGame = {
+  players: 2,
+  dimensions: []
 }
 
+function startMenu(){
+  $("main").empty();
+  $("main").append(`<button type="button" name="button" onclick="setBoard(4,3)">Start Game</button>`);
+  screenMode = "start menu";
+}
+function setBoard(x,y,players){
+  score = 0;
+  currentGame.dimensions = [x,y];
+  currentGame.players = players;
   $("main").attr('id', 'game-board');
   screenMode = "play";
   let cardSize = 40;
@@ -42,9 +51,18 @@ function startMenu(){
     let myID = $(e.target).attr("id").charAt(3)+$(e.target).attr("id").charAt(4);
     flipCard(myID);
   });
+
+  setTimeout(flipAll, 1000);
+  setTimeout(flipAll, 6000);
 }
 
 
 function flipCard(index){
   $(`#inr${index}`).toggleClass("hidden");
+}
+
+function flipAll(){
+  for(let  i=0; i<currentGame.dimensions[0] * currentGame.dimensions[1]; i++){
+    flipCard(i);
+  }
 }
