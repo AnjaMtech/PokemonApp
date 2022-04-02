@@ -4,60 +4,124 @@ WIP means Work in Progress. Please surround code you are modfiying with the labe
 
 -----NOTES FOR PARTNER-----*/
 * {
-  margin: 0;
+	margin: 0;
 }
 
 body {
-  text-align: center;
-  background-image: url("../images/background-wood.jpg");
-  background-size: cover;
-  color: #aaa;
-  background-color: #43210d;
+	text-align: center;
+	background-image: url("../images/background-wood.jpg");
+	background-size: cover;
+	color: #aaa;
+	background-color: #43210d;
 }
 
 main {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  gap: 0;
-  width: 800px;
-  height: 500px;
-  margin: auto;
-  margin-bottom: 50px;
-  background-color: #111;
-  overflow: hidden;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: stretch;
+	-ms-flex-align: stretch;
+	align-items: stretch;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	gap: 0;
+	width: 800px;
+	height: 500px;
+	margin: auto;
+	margin-bottom: 50px;
+	background-color: #111;
+	overflow: hidden;
 }
 
 .card {
-  width: 125px;
-  height: 175px;
-  margin: 0 10px;
-  border-radius: 10px;
-  background-color: #eee;
+	width: 125px;
+	height: 175px;
+	margin: 0 10px;
+	border-radius: 10px;
+	background-color: #eee;
 }
 
 footer {
-  margin-bottom: -10px;
-  padding: 15px;
-  background-color: #111;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0px;
+	margin-bottom: -10px;
+	padding: 15px;
+	background-color: #111;
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0px;
 }
 
 footer ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-pack: distribute;
+	justify-content: space-around;
 }
 /*# sourceMappingURL=main.css.map */
+
+/* WIP -- all code below is the VERY basic css for starter page */
+
+.main-cont {
+	margin: 0;
+	padding: 0;
+	background-color: coral;
+	width: 100%;
+	height: 100vh;
+}
+
+header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 5em;
+	background-color: lightblue;
+}
+
+.player-num-cont {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+	height: 25%;
+	background-color: aqua;
+}
+
+.numOfPlayers {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	height: 25%;
+	width: 75%;
+	justify-content: flex-start;
+	background-color: blueviolet;
+}
+
+/* Radio Buttons */
+.radio-cont {
+	background-color: yellow;
+	margin-left: 3rem;
+}
+
+.radio-btn {
+	margin-left: 0.5em;
+	margin-right: 1em;
+}
+
+/* Set selection */
+
+.select-set-cont {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: brown;
+	width: 20em;
+}
+
+#poke-set-select {
+	display: flex;
+	width: 20em;
+	text-align: center;
+}
