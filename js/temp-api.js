@@ -1,3 +1,39 @@
+/*
+const pokemonTemp = [
+  {
+    name: "Pikachu",
+    url: "images/blank-sq.jpg"
+  },
+  {
+    name: "Machamp",
+    url: "images/blank-sq.jpg"
+  },
+  {
+    name: "Electrike",
+    url: "images/blank-sq.jpg"
+  },
+  {
+    name: "Ditto",
+    url: "images/blank-sq.jpg"
+  },
+  {
+    name: "Dugtrio",
+    url: "images/blank-sq.jpg"
+  },
+  {
+    name: "Torchic",
+    url: "images/blank-sq.jpg"
+  },
+  {
+    name: "Rattata",
+    url: "images/blank-sq.jpg"
+  },
+  {
+    name: "Squirtle",
+    url: "images/blank-sq.jpg"
+  }
+];
+*/
 const pokemonTemp = [
   {
     name: "Pikachu",
