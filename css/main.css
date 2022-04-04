@@ -26,8 +26,11 @@ body {
 
 main {
   margin-bottom: 50px;
-  background-color: #111;
   overflow: hidden;
+}
+
+#game-board {
+  background-color: #111;
 }
 
 .card-active {

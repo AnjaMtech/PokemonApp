@@ -38,8 +38,11 @@ body {
 main{
 
   margin-bottom: 50px;
-  background-color: $dark;
   overflow: hidden;
+}
+#game-board{
+
+  background-color: $dark;
 }
 .card-active{
 	display: hidden;
