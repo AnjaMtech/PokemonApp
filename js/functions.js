@@ -1,5 +1,6 @@
 let screenMode;
 let game = {
+  status: "setup",
   players: 2,
   player: 1,
   dimensions: [],
@@ -11,13 +12,15 @@ let game = {
       name: "pikachu",
       index: 0,
       url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png",
-      active: true
+      active: true,
+      visible: false
     },
     {
       name: "pikachu",
       index: 0,
       url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png",
-      active: true
+      active: true,
+      visible: false
     }
   ]
 }
@@ -32,8 +35,7 @@ function setBoard(x,y,players){
   game.dimensions = [x,y];
   game.players = players;
   pokemonList = pokemonTemp;
-  $("main").attr('id', 'game-board');
-  screenMode = "play";
+  game.status = "play";
 
   for(let i=0; i<players; i++){
     game.scores[i] = 0;
@@ -43,54 +45,79 @@ function setBoard(x,y,players){
   for(let i=0; i<x*y/2; i++){
     let currPokemon = Math.floor(Math.random()*pokemonList.length);
     for(let j=0; j<2; j++){
-      myCards.splice(Math.floor(Math.random()*myCards.length), 0, {name: pokemonList[currPokemon].name, index: currPokemon, url: pokemonList[currPokemon].url, active: true});
+      myCards.splice(Math.floor(Math.random()*myCards.length), 0, {name: pokemonList[currPokemon].name, index: currPokemon, url: pokemonList[currPokemon].url, active: true, visible: true});
     }
   }
   game.cards = myCards;
   printCards(game.cards);
 
-  setTimeout(flipAll, 3000);
+  setTimeout(flipAll, 1000);
+  setTimeout(setToPlay, 1000);
 }
 
 
-
-
-function flipCardOld(index, type){
-  $(`#inr${index}`).toggleClass("hidden");
-  if(type === "all"){
-    return;
-  }
-  if(game.fMatch[0] !== "" && game.sMatch[0] !== ""){
-    $(`#inr${game.fMatch[1]}`).toggleClass("hidden");
-    $(`#inr${game.sMatch[1]}`).toggleClass("hidden");
-    game.fMatch = [""];
-    game.sMatch = [""];
-    return;
-  }
-  if(game.fMatch[0] == ""){
-    game.fMatch[0] = $(`#inr${index}`).attr("data-name");
-    game.fMatch[1] = index;
-    purr(`pokemon ${$(`#inr${index}`).attr("data-name")}`);
-  }else if(game.sMatch[0] == ""){
-    game.sMatch[0] = $(`#inr${index}`).attr("data-name");
-    game.sMatch[1] = index;
-    if(game.fMatch[0] == game.sMatch[0]){
-      purr(`score goes up`);
-      game.scores[game.player-1]++;
-      setTimeout(flipCardOld, 1000);
-    }else{
-      purr(`no match, flipping card ${game.fMatch[1]} and ${game.sMatch[1]}`)
-      setTimeout(flipCardOld, 1000);
-    }
-    nextPlayer();
-  }
+function setToPlay(){
+  game.status = "play";
 }
+
 function flipCard(index){
-  // purr(game.cards[index].name, "o");
-  // game.cards[index].active = false;
+  if(game.cards[index].visible){
+    game.cards[index].visible = false;
+  }else{
+    game.cards[index].visible = true;
+  }
   update();
 }
-function nextPlayer(){
+function flipMatches(){
+  game.status = "pause";
+  purr(`flipping cards ${game.fMatch[1]} and ${game.sMatch[1]}`)
+  flipCard(game.fMatch[1]);
+  flipCard(game.sMatch[1]);
+  game.fMatch = [""];
+  game.sMatch = [""];
+  setToPlay();
+}
+function removeMatches(){
+  game.status = "pause";
+  purr(`removing cards ${game.fMatch[1]} and ${game.sMatch[1]}`)
+  removeCard(game.fMatch[1]);
+  removeCard(game.sMatch[1]);
+  game.fMatch = [""];
+  game.sMatch = [""];
+  setToPlay();
+}
+function seeIfMatch(index){
+  if(game.fMatch[0] == ""){
+    game.fMatch[0] = game.cards[index].name;
+    game.fMatch[1] = index;
+    purr(`first match`)
+  }else if (game.sMatch == ""){
+    game.sMatch[0] = game.cards[index].name;
+    game.sMatch[1] = index;
+    purr(`second match`)
+    if(game.fMatch[0] == game.sMatch[0]){
+      game.status = "pause";
+      setTimeout(removeMatches, 500)
+      scoreUp();
+    }else{
+      game.status = "pause";
+      setTimeout(flipMatches, 500);
+      purr('no match');
+    }
+  }else{
+    purr(`match error`);
+  }
+}
+function haveMatch(){
+  if(game.fMatch[0] === game.sMatch[0]){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+function scoreUp(){
+  game.scores[game.player]++;
   if(game.player != game.players){
     game.player++
   }else{
@@ -101,10 +128,9 @@ function removeCard(index){
   game.cards[index].active = false;
   update();
 }
-
 function flipAll(){
   for(let  i=0; i<game.dimensions[0] * game.dimensions[1]; i++){
-    flipCardOld(i, "all");
+    flipCard(i);
   }
   game.fMatch = [""];
   game.sMatch = [""];

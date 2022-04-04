@@ -20,17 +20,23 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #111;
   min-width: 50px;
   min-height: 50px;
+  margin: 0;
+}
+
+#scoreboard {
+  min-width: 100px;
+  background-color: #222;
+  color: #fff;
 }
 
 main {
+  display: flex;
+  justify-content: space-around;
   margin-bottom: 50px;
   overflow: hidden;
-}
-
-#game-board {
-  background-color: #111;
 }
 
 .card-active {
