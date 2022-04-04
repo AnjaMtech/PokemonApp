@@ -1,8 +1,25 @@
 let screenMode;
-let score;
-let currentGame = {
+let game = {
   players: 2,
-  dimensions: []
+  player: 1,
+  dimensions: [],
+  fMatch: [""],
+  sMatch: [""],
+  scores: [],
+  cards:[
+    {
+      name: "pikachu",
+      index: 0,
+      url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png",
+      active: true
+    },
+    {
+      name: "pikachu",
+      index: 0,
+      url: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png",
+      active: true
+    }
+  ]
 }
 
 function startMenu(){
@@ -12,57 +29,86 @@ function startMenu(){
 }
 function setBoard(x,y,players){
   score = 0;
-  currentGame.dimensions = [x,y];
-  currentGame.players = players;
+  game.dimensions = [x,y];
+  game.players = players;
+  pokemonList = pokemonTemp;
   $("main").attr('id', 'game-board');
   screenMode = "play";
-  let cardSize = 40;
-  let myCards =[];
+
+  for(let i=0; i<players; i++){
+    game.scores[i] = 0;
+  }
+
+  let myCards =[[]];
   for(let i=0; i<x*y/2; i++){
-    let currPokemon = Math.floor(Math.random()*pokemonTemp.length);
+    let currPokemon = Math.floor(Math.random()*pokemonList.length);
     for(let j=0; j<2; j++){
-      myCards.splice(Math.floor(Math.random()*myCards.length), 0, currPokemon);
+      myCards.splice(Math.floor(Math.random()*myCards.length), 0, {name: pokemonList[currPokemon].name, index: currPokemon, url: pokemonList[currPokemon].url, active: true});
     }
   }
+  game.cards = myCards;
+  printCards(game.cards);
 
-  //clears board of any leftover cards
-  $("#game-board").empty();
-  //Adds cards to board
-  for(let i=0; i<x*y; i++){
-    $("#game-board").append(
-      `<div class="card" id="crd${i}">
-        <div class="inner-card hidden" id="inr${i}">
-          <h2 id="tit${i}">${pokemonTemp[myCards[i]].name}</h2>
-          <img src="${pokemonTemp[myCards[i]].url}" alt="${pokemonTemp[myCards[i]].name}" id="img${i}">
-        </div>
-      </div>`
-    );
-  }
-  //Makes card sizes all exact dimensions
-  $(".card").css("width", `${2.5*cardSize}px`);
-  $(".card").css("height", `${3.5*cardSize}px`);
-  $(".card").css("border-radius", `${cardSize*0.2}px`);
-  //Makes height of board based on how many cards wide and high
-  // Card ratio * Card Size + Card Margin multiplied by how many cards plus BOARD padding
-  $("main").css("width", `${(2.5*cardSize+20)*x+50}px`);
-  $("main").css("height", `${(3.5*cardSize+20)*y+50}px`);
-
-  $(".card").click(function(e){
-    let myID = $(e.target).attr("id").charAt(3)+$(e.target).attr("id").charAt(4);
-    flipCard(myID);
-  });
-
-  setTimeout(flipAll, 1000);
-  setTimeout(flipAll, 6000);
+  setTimeout(flipAll, 3000);
 }
 
 
-function flipCard(index){
+
+
+function flipCardOld(index, type){
   $(`#inr${index}`).toggleClass("hidden");
+  if(type === "all"){
+    return;
+  }
+  if(game.fMatch[0] !== "" && game.sMatch[0] !== ""){
+    $(`#inr${game.fMatch[1]}`).toggleClass("hidden");
+    $(`#inr${game.sMatch[1]}`).toggleClass("hidden");
+    game.fMatch = [""];
+    game.sMatch = [""];
+    return;
+  }
+  if(game.fMatch[0] == ""){
+    game.fMatch[0] = $(`#inr${index}`).attr("data-name");
+    game.fMatch[1] = index;
+    purr(`pokemon ${$(`#inr${index}`).attr("data-name")}`);
+  }else if(game.sMatch[0] == ""){
+    game.sMatch[0] = $(`#inr${index}`).attr("data-name");
+    game.sMatch[1] = index;
+    if(game.fMatch[0] == game.sMatch[0]){
+      purr(`score goes up`);
+      game.scores[game.player-1]++;
+      setTimeout(flipCardOld, 1000);
+    }else{
+      purr(`no match, flipping card ${game.fMatch[1]} and ${game.sMatch[1]}`)
+      setTimeout(flipCardOld, 1000);
+    }
+    nextPlayer();
+  }
+}
+function flipCard(index){
+  // purr(game.cards[index].name, "o");
+  // game.cards[index].active = false;
+  update();
+}
+function nextPlayer(){
+  if(game.player != game.players){
+    game.player++
+  }else{
+    game.player = 1;
+  }
+}
+function removeCard(index){
+  game.cards[index].active = false;
+  update();
 }
 
 function flipAll(){
-  for(let  i=0; i<currentGame.dimensions[0] * currentGame.dimensions[1]; i++){
-    flipCard(i);
+  for(let  i=0; i<game.dimensions[0] * game.dimensions[1]; i++){
+    flipCardOld(i, "all");
   }
+  game.fMatch = [""];
+  game.sMatch = [""];
+}
+function update(){
+  printCards(game.cards);
 }
