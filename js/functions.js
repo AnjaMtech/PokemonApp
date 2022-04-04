@@ -70,7 +70,7 @@ function flipCard(index){
 }
 function flipMatches(){
   game.status = "pause";
-  purr(`flipping cards ${game.fMatch[1]} and ${game.sMatch[1]}`)
+  // purr(`flipping cards ${game.fMatch[1]} and ${game.sMatch[1]}`)
   flipCard(game.fMatch[1]);
   flipCard(game.sMatch[1]);
   game.fMatch = [""];
@@ -79,7 +79,7 @@ function flipMatches(){
 }
 function removeMatches(){
   game.status = "pause";
-  purr(`removing cards ${game.fMatch[1]} and ${game.sMatch[1]}`)
+  // purr(`removing cards ${game.fMatch[1]} and ${game.sMatch[1]}`)
   removeCard(game.fMatch[1]);
   removeCard(game.sMatch[1]);
   game.fMatch = [""];
@@ -90,11 +90,9 @@ function seeIfMatch(index){
   if(game.fMatch[0] == ""){
     game.fMatch[0] = game.cards[index].name;
     game.fMatch[1] = index;
-    purr(`first match`)
   }else if (game.sMatch == ""){
     game.sMatch[0] = game.cards[index].name;
     game.sMatch[1] = index;
-    purr(`second match`)
     if(game.fMatch[0] == game.sMatch[0]){
       game.status = "pause";
       setTimeout(removeMatches, 500)
@@ -102,7 +100,6 @@ function seeIfMatch(index){
     }else{
       game.status = "pause";
       setTimeout(flipMatches, 500);
-      purr('no match');
     }
   }else{
     purr(`match error`);

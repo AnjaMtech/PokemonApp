@@ -66,13 +66,23 @@ function printCards(array){
   $("#game-board").css("height", `${(3.5*cardSize+20)*y+50}px`);
 
   $(".card-active").click(function(e){
+    if(game.status !== "play"){
+      return;
+    }
 
     let myID = $(e.target).attr("id").charAt(3)+$(e.target).attr("id").charAt(4);
-    seeIfMatch(myID);
-    purr(`does ${game.fMatch[1]} not equal ${game.sMatch[1]}`, "o")
-    if(game.fMatch[1] !== game.sMatch[1] && game.fMatch[1] !== undefined){
+    myID = parseInt(myID);
+    purr(game.fMatch, "o")
+    purr(myID, "o")
+    if(game.fMatch[1] !== myID){
+      purr(`${game.fMatch[1]} does not equal ${myID}`, "o")
       flipCard(myID);
+      seeIfMatch(myID);
+    }else{
+      purr(`${game.fMatch[1]} does equal ${myID}`, "o")
+
     }
+
   });
 
 }
