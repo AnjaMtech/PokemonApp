@@ -63,7 +63,6 @@ function render() {
 
 render();
 
-
 /* NOTE ignore this note
 
 make a object styled as
@@ -75,3 +74,4 @@ const x = [
 	},
 	repeat
 ]
+*/
