@@ -66,7 +66,7 @@ render();
 
 /* NOTE ignore this note
 
-make a object styled as 
+make a object styled as
 
 const x = [
 	{
@@ -75,4 +75,3 @@ const x = [
 	},
 	repeat
 ]
-
