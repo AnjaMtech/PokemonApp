@@ -12,6 +12,7 @@ $background: #43210d;
 * {
 	margin: 0;
 }
+
 body {
 	text-align: center;
 	background-image: url("../images/background-wood.jpg");
@@ -21,6 +22,9 @@ body {
 }
 
 //-----WIP-----
+<<<<<<< HEAD
+
+=======
 header{
 	background-color: $dark;
 	margin: 0;
@@ -28,6 +32,7 @@ header{
 		margin: 0;
 	}
 }
+>>>>>>> master
 // Black board where the cards are set up
 #game-board{
   display: flex;
@@ -98,6 +103,7 @@ main{
 	min-width: 20px;
 	min-height: 20px;
 }
+
 //-----WIP-----
 
 footer {
