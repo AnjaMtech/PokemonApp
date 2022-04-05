@@ -17,15 +17,16 @@ function getCards() {
 		})
 		.then((pokemon) => {
 			let cards = pokemon;
-			console.log(cards);
-			console.log(cards.data);
+			//console.log(cards);
+			//console.log(cards.data);
 			pokeCards.push(cards);
 		});
 }
+
 console.log(pokeCards);
 
 //this function grabs the sets
-/*
+
 function getSets() {
 	return fetch(apiSets, {
 		method: "GET",
@@ -53,11 +54,25 @@ function selectSet() {
 	});
 
 	document.getElementById("selectSet").innerHTML = testSelectHtml;
-} */
+}
 
 function render() {
-	//getSets();
+	getSets();
 	getCards();
 }
 
 render();
+
+
+/* NOTE ignore this note
+
+make a object styled as 
+
+const x = [
+	{
+		name:,
+		url:,
+	},
+	repeat
+]
+
