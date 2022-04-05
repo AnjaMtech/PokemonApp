@@ -2,6 +2,7 @@ const apiCards = "https://api.pokemontcg.io/v2/cards?page=1&pageSize=32";
 const apiSets = "https://api.pokemontcg.io/v2/sets";
 const apiKey = "ef72570ff371408f9668e414353b7b2e";
 let cardSets = [];
+const pokeCards = [];
 
 //This function grabs the cards
 function getCards() {
@@ -17,11 +18,14 @@ function getCards() {
 		.then((pokemon) => {
 			let cards = pokemon;
 			console.log(cards);
+			console.log(cards.data);
+			pokeCards.push(cards);
 		});
 }
+console.log(pokeCards);
 
 //this function grabs the sets
-
+/*
 function getSets() {
 	return fetch(apiSets, {
 		method: "GET",
@@ -49,10 +53,10 @@ function selectSet() {
 	});
 
 	document.getElementById("selectSet").innerHTML = testSelectHtml;
-}
+} */
 
 function render() {
-	getSets();
+	//getSets();
 	getCards();
 }
 
