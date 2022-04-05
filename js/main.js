@@ -2,7 +2,7 @@
 
 //-----WIP-----
 window.onload = function(){
-  setBoard(4,3, 1);
+  startMenu();
   // printCards(game.cards);
 }
 
