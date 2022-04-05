@@ -1,11 +1,10 @@
-//TODO make start page
-const apiCards = "https://api.pokemontcg.io/v2/cards?page=1&pageSize=16";
+const apiCards = "https://api.pokemontcg.io/v2/cards?page=1&pageSize=32";
 const apiSets = "https://api.pokemontcg.io/v2/sets";
 const apiKey = "ef72570ff371408f9668e414353b7b2e";
+let cardSets = [];
 
-//This function grabs the cards. it is also currently set to only grab 16 cards
+//This function grabs the cards
 function getCards() {
-	let cards;
 	return fetch(apiCards, {
 		method: "GET",
 		headers: {
@@ -16,14 +15,12 @@ function getCards() {
 			return response.json();
 		})
 		.then((pokemon) => {
-			cards = pokemon;
+			let cards = pokemon;
 			console.log(cards);
 		});
 }
 
-//this function grabs the sets.....well it's supposed to
-
-let cardSets = [];
+//this function grabs the sets
 
 function getSets() {
 	return fetch(apiSets, {
@@ -44,13 +41,19 @@ function getSets() {
 		});
 }
 
-getSets();
-
 function selectSet() {
-	let testSelectHTML = "";
-	cardSets.forEach((x) => {
-		testSelectHTML += `<option value="${x.id}">${x.name}</option>`;
+	let testSelectHtml = "";
+	cardSets.data.forEach((data) => {
+		console.log(data);
+		testSelectHtml += `<option value="${data.id}">${data.name}</option>`;
 	});
 
-	document.querySelector("testSelect").innerHTML = testSelectHtml;
+	document.getElementById("selectSet").innerHTML = testSelectHtml;
 }
+
+function render() {
+	getSets();
+	getCards();
+}
+
+render();
