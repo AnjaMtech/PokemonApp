@@ -2,7 +2,7 @@
 
 //-----WIP-----
 window.onload = function(){
-  setBoard(4,3, 2);
+  setBoard(4,3, 1);
   // printCards(game.cards);
 }
 
@@ -10,6 +10,8 @@ function printCards(array){
   $("main").empty()
   $("main").append(`<div id="game-board"></div>`)
   $("main").append(`<div id="scoreboard">scores</div>`)
+  $("header").empty()
+  $("header").append(`<h1>Pokemon Match</h1><div id="current-player"></div>`)
   $("#game-board").attr('class', 'container');
   $("#game-board").empty();
 
@@ -65,6 +67,7 @@ function printCards(array){
   $("#game-board").css("width", `${(2.5*cardSize+20)*x+50}px`);
   $("#game-board").css("height", `${(3.5*cardSize+20)*y+50}px`);
 
+  //Runs every time a card is clicked
   $(".card-active").click(function(e){
     if(game.status !== "play"){
       return;
@@ -72,18 +75,18 @@ function printCards(array){
 
     let myID = $(e.target).attr("id").charAt(3)+$(e.target).attr("id").charAt(4);
     myID = parseInt(myID);
-    purr(game.fMatch, "o")
-    purr(myID, "o")
     if(game.fMatch[1] !== myID){
-      purr(`${game.fMatch[1]} does not equal ${myID}`, "o")
       flipCard(myID);
       seeIfMatch(myID);
-    }else{
-      purr(`${game.fMatch[1]} does equal ${myID}`, "o")
-
     }
-
   });
+
+
+  //pushes info out to scoreboard and header
+  $("#current-player").append(`player ${game.player}`)
+  for(let i=0; i<game.players; i++){
+    $("#scoreboard").append(`<div>player ${i+1}: ${game.scores[i]}</div>`);
+  }
 
 }
 //-----WIP-----

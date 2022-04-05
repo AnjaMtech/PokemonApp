@@ -96,10 +96,11 @@ function seeIfMatch(index){
     if(game.fMatch[0] == game.sMatch[0]){
       game.status = "pause";
       setTimeout(removeMatches, 500)
-      scoreUp();
+      nextTurn(1);
     }else{
       game.status = "pause";
       setTimeout(flipMatches, 500);
+      nextTurn(0);
     }
   }else{
     purr(`match error`);
@@ -113,8 +114,8 @@ function haveMatch(){
   }
 }
 
-function scoreUp(){
-  game.scores[game.player]++;
+function nextTurn(score){
+  game.scores[game.player-1]+=score;
   if(game.player != game.players){
     game.player++
   }else{
