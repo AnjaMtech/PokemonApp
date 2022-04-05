@@ -27,7 +27,7 @@ let game = {
 
 function startMenu(){
   $("main").empty();
-  $("main").append(`<button type="button" name="button" onclick="setBoard(4,3)">Start Game</button>`);
+  $("main").append(`<button type="button" name="button" onclick="setBoard(4,3,2)">Start Game</button>`);
   screenMode = "start menu";
 }
 function setBoard(x,y,players){
