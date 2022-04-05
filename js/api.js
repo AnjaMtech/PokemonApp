@@ -1,3 +1,5 @@
+//ANCHOR this BRanch is for making the name/url object array && randomizer function
+
 const apiCards = "https://api.pokemontcg.io/v2/cards?page=1&pageSize=32";
 const apiSets = "https://api.pokemontcg.io/v2/sets";
 const apiKey = "ef72570ff371408f9668e414353b7b2e";
@@ -26,7 +28,6 @@ function getCards() {
 console.log(pokeCards);
 
 //this function grabs the sets
-
 function getSets() {
 	return fetch(apiSets, {
 		method: "GET",
