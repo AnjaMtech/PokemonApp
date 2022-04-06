@@ -6,6 +6,14 @@ const apiKey = "ef72570ff371408f9668e414353b7b2e";
 let cardSets = [];
 const pokeCards = [];
 
+//Pokemon class
+let pokemonData = class {
+	constructor(name, url) {
+		this.name = name;
+		this.url = url;
+	}
+};
+
 //This function grabs the cards
 function getCards() {
 	return fetch(apiCards, {
