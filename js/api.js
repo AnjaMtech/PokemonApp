@@ -1,9 +1,9 @@
-//ANCHOR this Branch is for making the name/url object array && randomizer function
+//NOTE this Branch is for making the name/url object array && randomizer function
 const apiCards = "https://api.pokemontcg.io/v2/cards?page=1&pageSize=32";
 const apiSets = "https://api.pokemontcg.io/v2/sets";
 const apiKey = "ef72570ff371408f9668e414353b7b2e";
-let cardSets = [];
 const pokeCards = []; //this is the array that has each pokemon
+let cardSets = [];
 
 //ANCHOR creates pokemon object
 function Pokemon(image, name) {
@@ -25,10 +25,9 @@ function getCards() {
 		.then((pokemon) => {
 			let cards = pokemon;
 			cards.data.forEach((data) => {
-				let newPokemon = new Pokemon(data.images.large, data.name); // if you need a smaller image just change "large" to "small"
+				let newPokemon = new Pokemon(data.images.large, data.name); // NOTE For smaller images "data.images.small"
 				pokeCards.push(newPokemon);
 			});
-			console.log(pokeCards);
 		});
 }
 
@@ -45,7 +44,6 @@ function getSets() {
 		})
 		.then((setInfo) => {
 			cardSets = setInfo;
-			console.log(setInfo);
 		})
 		.then(() => {
 			selectSet();
@@ -55,17 +53,27 @@ function getSets() {
 function selectSet() {
 	let testSelectHtml = "";
 	cardSets.data.forEach((data) => {
-		console.log(data);
 		testSelectHtml += `<option value="${data.id}">${data.name}</option>`;
 	});
-
 	document.getElementById("selectSet").innerHTML = testSelectHtml;
 }
 
-/* ------------------ ANCHOR this is just a render function ----------------- */
+/* ----------------------- ANCHOR Randomizer function ----------------------- */
+function random(arr) {
+	const randomIndex = Math.floor(Math.random() * arr.length);
+	const item = arr[randomIndex];
+	return item;
+}
+
+const result = random(pokeCards);
+console.log(result);
+
+/* ------------------NOTE This is just a render function ----------------- */
 function render() {
-	//getSets();
+	getSets();
 	getCards();
+
+	random();
 }
 
 render();
