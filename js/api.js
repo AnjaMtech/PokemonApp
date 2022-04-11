@@ -1,4 +1,4 @@
-//ANCHOR this BRanch is for making the name/url object array && randomizer function
+//ANCHOR this Branch is for making the name/url object array && randomizer function
 
 const apiCards = "https://api.pokemontcg.io/v2/cards?page=1&pageSize=32";
 const apiSets = "https://api.pokemontcg.io/v2/sets";
