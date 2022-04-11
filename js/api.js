@@ -6,16 +6,12 @@ const apiKey = "ef72570ff371408f9668e414353b7b2e";
 let cardSets = [];
 const pokeCards = [];
 
-//Pokemon class
-let pokemonData = class {
-	constructor(name, url) {
-		this.name = name;
-		this.url = url;
-	}
-};
-
 //This function grabs the cards
 function getCards() {
+	function Pokemon(name, image) {
+		this.pName = name;
+		this.pImage = image;
+	}
 	return fetch(apiCards, {
 		method: "GET",
 		headers: {
@@ -27,14 +23,14 @@ function getCards() {
 		})
 		.then((pokemon) => {
 			let cards = pokemon;
-			//console.log(cards);
-			//console.log(cards.data);
-			pokeCards.push(cards);
+			cards.data.forEach((data) => {
+				console.log(data);
+			});
+			//pokeCards.push(cards);
 		});
 }
 
-console.log(pokeCards);
-
+/*
 //this function grabs the sets
 function getSets() {
 	return fetch(apiSets, {
@@ -64,9 +60,9 @@ function selectSet() {
 
 	document.getElementById("selectSet").innerHTML = testSelectHtml;
 }
-
+*/
 function render() {
-	getSets();
+	//getSets();
 	getCards();
 }
 
