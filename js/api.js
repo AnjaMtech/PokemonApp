@@ -66,13 +66,11 @@ function random(arr) {
 }
 
 const result = random(pokeCards);
-console.log(result);
 
 /* ------------------NOTE This is just a render function ----------------- */
 function render() {
 	getSets();
 	getCards();
-
 	random();
 }
 
