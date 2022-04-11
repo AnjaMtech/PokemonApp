@@ -1,17 +1,18 @@
 //ANCHOR this Branch is for making the name/url object array && randomizer function
-
 const apiCards = "https://api.pokemontcg.io/v2/cards?page=1&pageSize=32";
 const apiSets = "https://api.pokemontcg.io/v2/sets";
 const apiKey = "ef72570ff371408f9668e414353b7b2e";
 let cardSets = [];
-const pokeCards = [];
+const pokeCards = []; //this is the array that has each pokemon
 
-//This function grabs the cards
+//ANCHOR creates pokemon object
+function Pokemon(image, name) {
+	this.pokemonImage = image;
+	this.pokemonName = name;
+}
+
+//ANCHOR this function grabs the cards
 function getCards() {
-	function Pokemon(name, image) {
-		this.pName = name;
-		this.pImage = image;
-	}
 	return fetch(apiCards, {
 		method: "GET",
 		headers: {
@@ -24,14 +25,14 @@ function getCards() {
 		.then((pokemon) => {
 			let cards = pokemon;
 			cards.data.forEach((data) => {
-				console.log(data);
+				let newPokemon = new Pokemon(data.images.large, data.name); // if you need a smaller image just change "large" to "small"
+				pokeCards.push(newPokemon);
 			});
-			//pokeCards.push(cards);
+			console.log(pokeCards);
 		});
 }
 
-/*
-//this function grabs the sets
+//ANCHOR this function grabs the sets ignore anything below this line, this is for page 3
 function getSets() {
 	return fetch(apiSets, {
 		method: "GET",
@@ -60,23 +61,11 @@ function selectSet() {
 
 	document.getElementById("selectSet").innerHTML = testSelectHtml;
 }
-*/
+
+/* ------------------ ANCHOR this is just a render function ----------------- */
 function render() {
 	//getSets();
 	getCards();
 }
 
 render();
-
-/* NOTE ignore this note
-
-make a object styled as
-
-const x = [
-	{
-		name:,
-		url:,
-	},
-	repeat
-]
-*/
