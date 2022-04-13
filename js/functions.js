@@ -59,38 +59,8 @@ function setBoard(x, y, players) {
 	game.cards = myCards;
 	printCards(game.cards);
 
-	setTimeout(flipAll, 1000);
-	setTimeout(setToPlay, 1000);
-}
-
-function startMenu(){
-  $("main").empty();
-  $("main").append(`<button type="button" name="button" onclick="setBoard(4,3)">Start Game</button>`);
-  screenMode = "start menu";
-}
-function setBoard(x,y,players){
-  score = 0;
-  game.dimensions = [x,y];
-  game.players = players;
-  pokemonList = pokeCards;
-  game.status = "play";
-
-  for(let i=0; i<players; i++){
-    game.scores[i] = 0;
-  }
-
-  let myCards =[[]];
-  for(let i=0; i<x*y/2; i++){
-    let currPokemon = Math.floor(Math.random()*pokemonList.length);
-    for(let j=0; j<2; j++){
-      myCards.splice(Math.floor(Math.random()*myCards.length), 0, {name: pokemonList[currPokemon].name, index: currPokemon, url: pokemonList[currPokemon].url, active: true, visible: true});
-    }
-  }
-  game.cards = myCards;
-  printCards(game.cards);
-
-  setTimeout(flipAll, 1000);
-  setTimeout(setToPlay, 1000);
+	setTimeout(flipAll, 2500);
+	setTimeout(setToPlay, 2500);
 }
 
 function flipCard(index) {
@@ -166,8 +136,8 @@ function flipAll() {
 	game.fMatch = [""];
 	game.sMatch = [""];
 }
-function setToPlay(){
-  game.status = "play";
+function setToPlay() {
+	game.status = "play";
 }
 function update() {
 	printCards(game.cards);
