@@ -7,8 +7,8 @@ let cardSets = [];
 
 //ANCHOR creates pokemon object
 function Pokemon(image, name) {
-	this.pokemonImage = image;
-	this.pokemonName = name;
+	this.url = image;
+	this.name = name;
 }
 
 //ANCHOR this function grabs the cards
@@ -25,11 +25,13 @@ function getCards() {
 		.then((pokemon) => {
 			let cards = pokemon;
 			cards.data.forEach((data) => {
-				let newPokemon = new Pokemon(data.images.large, data.name); // NOTE For smaller images "data.images.small"
+				let newPokemon = new Pokemon(data.images.small, data.name); // NOTE For smaller images "data.images.small"
 				pokeCards.push(newPokemon);
 			});
 		});
 }
+
+console.log(pokeCards);
 
 //ANCHOR this function grabs the sets ignore anything below this line, this is for page 3
 function getSets() {
@@ -58,14 +60,14 @@ function selectSet() {
 	document.getElementById("selectSet").innerHTML = testSelectHtml;
 }
 
-/* ----------------------- ANCHOR Randomizer function ----------------------- */
+/* ----------------------- ANCHOR Randomizer function ----------------------- 
 function random(arr) {
 	// const randomIndex = Math.floor(Math.random() * arr.length);
 	// const item = arr[randomIndex];
 	// return item;
 }
 
-const result = random(pokeCards);
+const result = random(pokeCards); */
 
 /* ------------------NOTE This is just a render function ----------------- */
 function render() {
