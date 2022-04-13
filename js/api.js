@@ -25,7 +25,7 @@ function getCards() {
 		.then((pokemon) => {
 			let cards = pokemon;
 			cards.data.forEach((data) => {
-				let newPokemon = new Pokemon(data.images.small, data.name); // NOTE For smaller images "data.images.small"
+				let newPokemon = new Pokemon(data.images.small, data.name);
 				pokeCards.push(newPokemon);
 			});
 		});
@@ -73,7 +73,7 @@ const result = random(pokeCards); */
 function render() {
 	getSets();
 	getCards();
-	random();
+	//random();
 }
 
 render();
