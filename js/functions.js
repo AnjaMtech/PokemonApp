@@ -51,8 +51,8 @@ function setBoard(x,y,players){
   game.cards = myCards;
   printCards(game.cards);
 
-  setTimeout(flipAll, 1000);
-  setTimeout(setToPlay, 1000);
+  setTimeout(flipAll, 4000);
+  setTimeout(setToPlay, 4000);
 }
 
 

@@ -17,9 +17,9 @@ function printCards(array){
 
   let boxCurrent = 0;
   for(let i=0; i<game.dimensions[1]; i++){
-    $("#game-board").append(`<div class="row green" id="editing"></div>`);
+    $("#game-board").append(`<div class="row" id="editing"></div>`);
     for(let j=0; j<game.dimensions[0]; j++){
-      $("#editing").append(`<div class="red card-box" id="box${boxCurrent}"></div>`);
+      $("#editing").append(`<div class="card-box" id="box${boxCurrent}"></div>`);
       boxCurrent++;
     }
     $("#editing").removeAttr('id');
