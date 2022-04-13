@@ -166,6 +166,9 @@ function flipAll() {
 	game.fMatch = [""];
 	game.sMatch = [""];
 }
+function setToPlay(){
+  game.status = "play";
+}
 function update() {
 	printCards(game.cards);
 }
