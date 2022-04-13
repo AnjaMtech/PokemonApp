@@ -58,9 +58,10 @@ function selectSet() {
 		testSelectHtml += `<option value="${data.id}">${data.name}</option>`;
 	});
 	document.getElementById("selectSet").innerHTML = testSelectHtml;
+	// $("#selectSet").text(testSelectHtml);
 }
 
-/* ----------------------- ANCHOR Randomizer function ----------------------- 
+/* ----------------------- ANCHOR Randomizer function -----------------------
 function random(arr) {
 	const randomIndex = Math.floor(Math.random() * arr.length);
 	const item = arr[randomIndex];
